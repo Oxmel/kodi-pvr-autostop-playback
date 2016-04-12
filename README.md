@@ -32,7 +32,7 @@ automatically stop it, emulating a normal TV behavior.
 That's true. Cec-client also provides an option to check the TV status by using
 'cec-client -s'. And it probably could be used to send cec commands like Play/Pause/Stop.
 
-But it also has a really anoying downgrade. When using this command, it always
+But it also has a really annoying downgrade. When using this command, it always
 unregister all cec-devices, breaking the link between TV and Kodi. Whatever option i
 tried, it always ends up with the same behavior. That's what makes cec-client
 totally unusable in some cases. Maybe there is a way, but i still didn't find it.
@@ -45,6 +45,6 @@ The easiest way to use it is by setting up a new crontab to launch the script at
 ```@reboot python /path/to/python/script```
 
 That way, it will regularly check the TV state and will stop any active player if
-TV is Off. Be sure to edit the script according to your own setup if needed.
+TV is Off. Be sure to edit the script according to your own setup.
 
 And taadaa! Problem solved. I hope it could be useful and save some time to people who have the same problem.
