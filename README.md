@@ -3,7 +3,7 @@ Automatically stop Kodi's active player if TV is switched Off.
 
 ### The problem
 
-Modern TVs generally integrate CEC capabilites. But some of the constructors
+Modern TVs generally integrate CEC capabilities. But some of the constructors
 implement their own version. And, on some brands, you can't have a full control
 on the remote.
 
@@ -17,7 +17,7 @@ the player to emulate a classic TV behavior. But sadly, it doesn't work that way
 
 ### The solution
 
-The solution i found is to use 'tvservice' wich will return a different status code
+The solution i found is to use 'tvservice' which will return a different status code
 if the TV is On or Off.
 
 ```$ tvservice -s ```  
@@ -39,12 +39,12 @@ totally unusable in some cases. Maybe there is a way, but i still didn't find it
 
 ### How to use
 
-The easiest way to use it is by setting up a new crontab to launch the script at sartup.
+The easiest way to use it is by setting up a new crontab to launch the script at startup.
 
 ```# crontab -e```  
 ```@reboot python /path/to/python/script```
 
-That way, it will regulary check the TV state and will stop any active player if
+That way, it will regularly check the TV state and will stop any active player if
 TV is Off. Be sure to edit the script according to your own setup if needed.
 
 And taadaa! Problem solved. I hope it could be useful and save some time to people who have the same problem.
