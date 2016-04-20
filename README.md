@@ -11,7 +11,7 @@ not be able to configure them, like the *Power* one. Especially when using kodi
 as a PVR client.
 
 In a perfect world, and when using Kodi to watch TV, we should only have to 
-press the Power button to turn the TV Off **and** automatically stop the 
+press the Power button to turn the TV off **and** automatically stop the 
 player, or in some cases, shutdown the Pi.
 But sadly, it doesn't work that way, and for what i know, there is sometimes 
 no possibility to manually configure the Power button or other ones as they 
@@ -30,17 +30,6 @@ Then, i use Kodi web API to control it over HTTP. If the script detects that TV
 is turned Off, it will check if there is any active player. If so, it will
 automatically stop it.
 
-### Why not using libcec and cec-client?
-
-That's true. We can run ```cec-client -s``` to get the power state of the TV. 
-And it probably could be used to send cec commands like Play/Pause/Stop.
-
-But it also has a really annoying downgrade. When using this command, it always
-unregister all cec-devices, breaking the link between TV and Kodi. Whatever 
-i tried, even with the *-m* option (monitor mode), it always ends up with the 
-same behavior. That's what makes cec-client totally unusable in some cases. 
-Maybe there is a way, but i still didn't find it.
-
 ### How to use
 
 Setup a new crontab to launch the script at startup.
@@ -50,7 +39,7 @@ Setup a new crontab to launch the script at startup.
 
 That way, it will regularly check the TV state and will stop any active player 
 if TV is Off. Be sure to edit the script according to your own setup.  
-Please not that at the moment, this script doesn't handle authentification if
+Please note that at the moment, this script doesn't handle authentification if
 you have configured credentials to connect to kodi web api. This feature will
 be added later.
 
