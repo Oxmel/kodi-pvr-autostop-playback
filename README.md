@@ -1,7 +1,7 @@
 ### The problem
 
 A lot of TVs natively support CEC nowadays. But, on some brands, only a few 
-number of buttons are recognized by the client.Mainly because a majority of 
+number of buttons are recognized by the client. Mainly because a majority of 
 constructors implement their own CEC version. And it's a real pain to not be 
 able to configure some of them, like the *Power* one. Especially when using kodi 
 as a PVR client.
@@ -11,7 +11,7 @@ playback if the TV is turner Off.
 
 ### The solution
 
-We gonna use ```tvservice``` which will return a different status 
+Let's use ```tvservice``` which will return a different status 
 code if the TV is On or Off.
 
 ```$ tvservice -s```  
@@ -23,12 +23,9 @@ automatically stop it.
 
 ### How to use
 
-Setup a new crontab to launch the script at startup.
+Setup a new crontab to exec the script every 2 minutes for example.
 
 ```# crontab -e```  
-```@reboot python /path/to/python/script```
+```*/2 * * * * python /path/to/python/script```
 
-
-Please note that at the moment, this script doesn't handle authentification if
-you have configured credentials to connect to kodi web api. This feature will
-be added later.
+And Tadaa! Problem solved :)
