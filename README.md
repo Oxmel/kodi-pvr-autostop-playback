@@ -6,12 +6,12 @@ constructors implement their own CEC version. And it's a real pain to not be
 able to configure some of them, like the *Power* one. Especially when using kodi 
 as a PVR client.
 
-So, let's use python to emulate a standard TV behavior. Aka automatically stop 
-playback if the TV is turner Off.
+So, let's emulate a standard TV behavior. Aka automatically stop 
+playback if the TV is turned Off.
 
 ### The solution
 
-Let's use ```tvservice``` which will return a different status 
+First, we use ```tvservice``` which will return a different status 
 code if the TV is On or Off.
 
 ```$ tvservice -s```  
