@@ -10,33 +10,32 @@ import json
 # Run 'tvservice -s' with TV turned On and Off to get your own
 On = "0x12000a" 
 Off = "0x120009" 
-# Connect to kodi web api. Kodi control over HTTP must be activated
+# Url of Kodi web api. Kodi control over HTTP must be activated
 url = "localhost:8080"
 # Declare Headers
 headers = {'Content-Type': 'application/json'}
+# Target any active player (video or audio)
+params = {'jsonrpc': '2.0', 'method': 'Player.GetActivePlayers', 'id': '1'}
 
 def tv():
-    # Read TV status using tvservice
-    tvservice = subprocess.check_output(['tvservice', '-s'])
+    # Get TV status using tvservice
+    tvService = subprocess.check_output(['tvservice', '-s'])
     # Split the output using shell like syntax. Much easier to parse
-    tvStatus = shlex.split(tvservice)[1]
-
+    tvStatus = shlex.split(tvService)[1]
     if tvStatus == On :
         pass
     elif tvStatus == Off :
         player()
+    else :
+        print "Unable to determine TV status. Are status codes correctly set up?"
 
 def player():
-    # Request the list of all active players
-    params = {'jsonrpc': '2.0', 'method': 'Player.GetActivePlayers', 'id': '1'}
-    # Check for active players
     conn = httplib.HTTPConnection(url)
+    # Ask Kodi web api if a player's currently active
     conn.request('POST', '/jsonrpc?', json.dumps(params), headers)
-    response = conn.getresponse()
-    playerStatus = json.loads(response.read())
-
+    # Read json response
+    playerStatus = json.loads(conn.getresponse().read())
     if playerStatus["result"] == [] :
-        conn.close()
         pass
     else :
         # Get active player's id
@@ -44,6 +43,6 @@ def player():
         # Stop active player based on its id
         stopCmd = {'jsonrpc':'2.0', 'method':'Player.Stop', 'id':1, 'params':{'playerid': playerId}}
         conn.request('POST', '/jsonrpc?', json.dumps(stopCmd), headers)
-        conn.close()
+    conn.close()
 
 tv()
