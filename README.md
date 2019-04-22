@@ -1,31 +1,19 @@
-### The problem
+### Description
 
-A lot of TVs natively support CEC nowadays. But, on some brands, only a few 
-number of buttons are recognized by the client. Mainly because a majority of 
-constructors implement their own CEC version. And it's a real pain to not be 
-able to configure some of them, like the *Power* one. Especially when using kodi 
-as a PVR client.
+I originally wrote this script to create an option that wasn't present in the
+older Kodi releases (v16 "Jarvis" for instance). The goal was to automatically
+stop playback if the TV was turned off to mimic a standard TV behavior when
+using Kodi as a PVR/DVR client.
 
-So, let's emulate a standard TV behavior. Aka automatically stop 
-playback if the TV is turned Off.
+But this is not relevant anymore as the last releases of Kodi now offer the
+exact same option through libCEC.
 
-### The solution
+### Use cases
 
-First, we use ```tvservice``` which will return a different status 
-code if the TV is On or Off.
+You can recycle this script and adapt it for your own needs. Especially if you
+want to trigger custom actions that are not yet implemented by Kodi.
 
-```$ tvservice -s```  
-```$ state 0x12000a [HDMI CEA (16) RGB lim 16:9], 1920x1080 @ 60.00Hz, progressive```
-
-Then, we use Kodi web API to control it over HTTP. If the script detects that TV
-is turned Off, it will check if there is any active player. If so, it will
-automatically stop it.
-
-### How to use
-
-Setup a new crontab to exec the script every 2 minutes for example.
-
-```# crontab -e```  
-```*/2 * * * * python /path/to/python/script```
-
-And Tadaa! Problem solved :)
+For example, when the TV is turned off, you may want to perform a different
+action depending on the player type (music, video, live tv,...). And decide to
+stop playback in one case, but not the other. Or to verify if there is no live
+recording before stopping the player.
