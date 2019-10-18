@@ -52,5 +52,6 @@ def player():
     except StandardError :
         print "Unable to determine player status. Please verify url."
 
-
-tv()
+# Call the main function in a cleaner fashion
+if __name__ == '__main__':
+    tv()
