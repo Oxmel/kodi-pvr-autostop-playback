@@ -8,7 +8,7 @@ import json
 
 # Tv status code returned by 'tvservice'. May vary depending on the brand
 # Run 'tvservice -s' with TV turned On and Off to get your own
-On = "0x12000a" 
+On = "0x12000a"
 Off = "0x120009"
 
 # Url of Kodi web api. Kodi control over HTTP must be activated
@@ -49,7 +49,7 @@ def player():
             stopCmd = {'jsonrpc':'2.0', 'method':'Player.Stop', 'id':1, 'params':{'playerid': playerId}}
             conn.request('POST', '/jsonrpc?', json.dumps(stopCmd), headers)
         conn.close()
-    except StandardError : 
+    except StandardError :
         print "Unable to determine player status. Please verify url."
 
 
