@@ -21,7 +21,7 @@ params = {'jsonrpc': '2.0', 'method': 'Player.GetActivePlayers', 'id': '1'}
 def tv():
     try :
         # Get TV status using tvservice
-        tvService = subprocess.check_output(['tvservice', '-s'])
+        tvService = subprocess.check_output(['/usr/bin/tvservice', '-s'])
         # Split the output using shell like syntax. Much easier to parse
         tvStatus = shlex.split(tvService)[1]
         if tvStatus == On :
